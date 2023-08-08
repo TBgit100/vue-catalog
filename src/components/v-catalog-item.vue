@@ -9,7 +9,7 @@
     <p class="v-catalog-item__price">{{ product_data.price}}</p>
     <p class="v-catalog-item__category">{{ product_data.category}}</p>
     <p class="v-catalog-item__price">{{ product_data.about}}</p>
-    <button class="v-catalog-item__add_to_cart_btn" @click="sendDataToParent">Add to cart</button>
+    <button class="v-catalog-item__add_to_cart_btn" @click="addToCart">Add to cart</button>
   </div>
 </template>
 
@@ -28,8 +28,8 @@ export default {
         return{}
     },
     methods:{
-        sendDataToParent(){
-            this.$emit('sendDataToParent', this.product_data.article)
+        addToCart(){
+            this.$emit('addToCart', this.product_data)
         },
     }
 
@@ -38,11 +38,15 @@ export default {
 
 <style>
     .v-catalog-item{
-        flex-basis: 25%;
-        max-width: 900px;
-        margin: 0 auto;
+        flex-basis: 35%;
         box-shadow: 0 0 8px 0 grey;
         padding: 20px;
         margin: 20px;
+    }
+
+    .v-catalog-item__image{
+        width: 160px;
+        display: block;
+        margin: 0 auto;
     }
 </style>

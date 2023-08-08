@@ -1,23 +1,52 @@
 <template>
   <div class="v-cart-item">
-    <p>item 1</p>
-    <p>Price: 100</p>
-    <button>Add to cart</button>
+    <img
+     class="v-catalog-item__image"
+     :src="require('../assets/images/' + cart_item_data.image)" 
+     alt="picture"
+     >
+     <div>
+      <p>{{cart_item_data.name}}</p>
+      <p>{{cart_item_data.price}}</p>
+      <p>{{cart_item_data.article}}</p>
+      <p>{{cart_item_data.about}}</p>
+     </div>
+     <div class="v-cart-item__quantity">
+        <div>
+          <p>Quantity</p>
+          <span>
+            {{ cart_item_data.quantity }}
+          </span>
+        </div>
+        <button @click="deleteFromCart">Delete</button>
+     </div>
   </div>
 </template>
 
 <script>
 export default {
     name: 'v-cart-item',
-    props: {},
+    props: {
+      cart_item_data:{
+        type: Object,
+        default(){
+                return {};
+            }
+      }
+    },
     data(){
         return{}
+    },
+    methods: {
+      deleteFromCart(){
+        this.$emit("deleteFromCart");
+      }
     }
 
 }
 </script>
 
-<style>
+<style scoped>
     .v-cart-item{
         display: flex;
         justify-content: space-between;
@@ -29,5 +58,14 @@ export default {
         box-shadow: 0 0 8px 0 grey;
         padding: 20px;
         margin: 20px;
+    }
+
+    .v-cart-item__quantity{
+      display: flex;
+      align-items: center;
+    }
+
+    .v-catalog-item__image{
+      margin: 0;
     }
 </style>
